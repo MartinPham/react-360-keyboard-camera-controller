@@ -1,6 +1,6 @@
 {
   "name": "@martinpham/react-360-keyboard-camera-controller",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provide Keyboard Camera Controller for your React 360 project. Now you can navigate inside 3D world using your arrow keys.",
   "main": "src/KeyboardCameraController.js",
   "scripts": {
