@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>r360</title>
+    <style>body { margin: 0; }</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  </head>
+  <body>
+    <!-- Attachment point for your app -->
+    <div id="container"></div>
+
+    <div id="controller" style="z-index: 999;position: absolute;bottom: 0px;right:0px;">
+      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'UP'});window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'LEFT'})">◄</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'UP'})">▲</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'DOWN'})">▼</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'RIGHT'})">►</button>
+    </div>
+    <script src="./client.bundle?platform=vr"></script>
+    <script>
+      // Initialize the React 360 application
+      React360.init(
+        'index.bundle?platform=vr&dev=true',
+        document.getElementById('container'),
+        {
+          assetRoot: 'static_assets/',
+        }
+      );
+    </script>
+  </body>
+</html>
+
