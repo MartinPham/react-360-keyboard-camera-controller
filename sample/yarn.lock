@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@martinpham/react-360-keyboard-camera-controller@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@martinpham/react-360-keyboard-camera-controller/-/react-360-keyboard-camera-controller-1.0.0.tgz#e6a0c64ee9ce75fc51e374a3c22d9363c4b0e4c8"
+  integrity sha512-Ct8hQMKrmvH3haWY4Cu7CchRlOJP2Stjvwq6lDx0p0PGjkhVWcGLOWV7tsxq5uh7ZyTKMjyWZvHT/DKbQaAuOw==
+
 "@types/node@^8.0.24":
   version "8.10.38"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.38.tgz#e05c201a668492e534b48102aca0294898f449f6"
