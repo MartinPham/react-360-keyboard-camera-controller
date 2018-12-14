@@ -14,11 +14,11 @@
       <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'DOWN'})">▼</button>
       <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'RIGHT'})">►</button>
     </div>
-    <script src="./client.bundle?platform=vr"></script>
+    <script src="./client.bundle.js"></script>
     <script>
       // Initialize the React 360 application
       React360.init(
-        'index.bundle?platform=vr&dev=true',
+        'index.bundle.js',
         document.getElementById('container'),
         {
           assetRoot: 'static_assets/',
