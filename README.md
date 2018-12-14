@@ -2,6 +2,11 @@
 
 Provide Keyboard Camera Controller for your React 360 project. Now you can navigate inside 3D world using your arrow keys.
 
+## Demo
+
+[Chess world](https://martinpham.github.io/react-360-keyboard-camera-controller/)
+
+
 ## Installing
 
 ```sh
