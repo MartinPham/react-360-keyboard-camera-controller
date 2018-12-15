@@ -2,10 +2,19 @@
 # yarn lockfile v1
 
 
-"@martinpham/react-360-keyboard-camera-controller@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@martinpham/react-360-keyboard-camera-controller/-/react-360-keyboard-camera-controller-1.0.0.tgz#e6a0c64ee9ce75fc51e374a3c22d9363c4b0e4c8"
-  integrity sha512-Ct8hQMKrmvH3haWY4Cu7CchRlOJP2Stjvwq6lDx0p0PGjkhVWcGLOWV7tsxq5uh7ZyTKMjyWZvHT/DKbQaAuOw==
+"@martinpham/react-360-keyboard-camera-controller@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@martinpham/react-360-keyboard-camera-controller/-/react-360-keyboard-camera-controller-1.0.5.tgz#eff03aa809119e322f36e5d4651817add97ee1b5"
+  integrity sha512-774i86Vi8KyzZ/vjIxnqdIKmEl/IbEgbi2mXbh/wBbgNYa+CtJ1/VW38wOwUeq8U94Zdeym3SmVfXMk7BTZJ6g==
+  dependencies:
+    three "^0.87.0"
+
+"@martinpham/react-360-mouse-lock-camera-controller@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@martinpham/react-360-mouse-lock-camera-controller/-/react-360-mouse-lock-camera-controller-1.0.5.tgz#5713c28a40e30bd86fc3be33d24a9ab8d71a3ca5"
+  integrity sha512-b8T857JBLGfiAjwl/wtEmYF61iuEBuQ/f0Mbd8Q8gBq+EjBIRphbLyHxljGl/Ao8KAEpGHdEyZP++TbQs4UB+w==
+  dependencies:
+    three "^0.87.0"
 
 "@types/node@^8.0.24":
   version "8.10.38"

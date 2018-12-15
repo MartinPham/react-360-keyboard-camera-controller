@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@martinpham/react-360-keyboard-camera-controller": "^1.0.5",
+    "@martinpham/react-360-keyboard-camera-controller": "^1.0.8",
     "@martinpham/react-360-mouse-lock-camera-controller": "^1.0.5",
     "ovrui": "^1.4.1",
     "react": "16.0.0",

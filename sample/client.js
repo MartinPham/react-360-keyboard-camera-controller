@@ -2,8 +2,8 @@
 // If you want to modify your application's content, start in "index.js"
 
 import {ReactInstance} from 'react-360-web';
-import KeyboardCameraController from './KeyboardCameraController';
-import MouseLockCameraController from './MouseLockCameraController';
+import KeyboardCameraController from '@martinpham/react-360-keyboard-camera-controller';
+import MouseLockCameraController from '@martinpham/react-360-mouse-lock-camera-controller';
 
 function init(bundle, parent, options = {}) {
   const r360 = new ReactInstance(bundle, parent, {
