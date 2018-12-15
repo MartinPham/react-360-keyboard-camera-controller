@@ -20,6 +20,6 @@ import KeyboardCameraController from '@martinpham/react-360-keyboard-camera-cont
 
 ...
 
-r360.controls.addCameraController(new KeyboardCameraController(r360._eventLayer));
+r360.controls.addCameraController(new KeyboardCameraController());
 ```
 

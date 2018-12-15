@@ -2,7 +2,8 @@
 // If you want to modify your application's content, start in "index.js"
 
 import {ReactInstance} from 'react-360-web';
-import KeyboardCameraController from '@martinpham/react-360-keyboard-camera-controller';
+import KeyboardCameraController from './KeyboardCameraController';
+import MouseLockCameraController from './MouseLockCameraController';
 
 function init(bundle, parent, options = {}) {
   const r360 = new ReactInstance(bundle, parent, {
@@ -13,7 +14,8 @@ function init(bundle, parent, options = {}) {
 
 
   // r360.controls.clearCameraControllers();
-  r360.controls.addCameraController(new KeyboardCameraController(r360._eventLayer)); // hacky
+  r360.controls.addCameraController(new KeyboardCameraController()); // hacky
+  r360.controls.addCameraController(new MouseLockCameraController(r360._eventLayer)); // hacky
 
   // Render your app content to the default cylinder surface
   // r360.renderToSurface(
