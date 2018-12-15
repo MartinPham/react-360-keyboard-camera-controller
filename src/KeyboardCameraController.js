@@ -1,121 +1,131 @@
 /**
  * Martin <i@martinpham.com>
- * 
- * @flow
  */
 
-import {type Quaternion, type Vec3} from 'react-360-web/js/Controls/Types';
-import {type CameraController} from 'react-360-web/js/Controls/CameraControllers/Types';
+import {Vector3, Quaternion} from 'three';
 
 
+const MOVING_SPEED = 3;
 
-const MOVING_SPEED = 10;
+class ObjectNotation {
+  position = null;
+  quaternion = null;
 
-export default class KeyboardCameraController implements CameraController {
-  _movingZ: number;
-  _movingX: number;
+  constructor(position, quaternion) {
+    this.position = position;
+    this.quaternion = quaternion;
+  }
 
-  constructor(frame: HTMLElement) {
-    this._frame = frame;
-    this._movingZ = 0;
-    this._movingX = 0;
+  translateOnAxis = (axis, distance) => {
+    const v1 = new Vector3();
+
+    v1.copy(axis).applyQuaternion(this.quaternion);
+
+    this.position.add(v1.multiplyScalar(distance));
+
+  };
+
+  translateX = (distance) => {
+    this.translateOnAxis(new Vector3(1, 0, 0), distance);
+  };
+  translateY = (distance) => {
+    this.translateOnAxis(new Vector3(0, 1, 0), distance);
+  };
+  translateZ = (distance) => {
+    this.translateOnAxis(new Vector3(0, 0, 1), distance);
+  };
+}
 
 
-    (this: any)._onKeyDown = this._onKeyDown.bind(this);
-    (this: any)._onKeyUp = this._onKeyUp.bind(this);
-    document.addEventListener('keydown', this._onKeyDown);
-    document.addEventListener('keyup', this._onKeyUp);
-    this._frame.addEventListener('keydown', this._onKeyDown);
-    this._frame.addEventListener('keyup', this._onKeyUp);
+export default class KeyboardCameraController {
+  _movingZ = 0;
+  _movingX = 0;
+
+  constructor(frame) {
+    this.frame = frame;
+
+
+    document.addEventListener('keydown', (event) => this.onKeyDown(event));
+
+    this.frame.addEventListener('keydown', (event) => this.onKeyDown(event));
 
     window.addEventListener("message", (event) => {
-      console.log(event)
       if(event.data.type ==='KEYBOARD_MESSAGE')
       {
         if(event.data.direction ==='UP')
         {
-          this._movingZ = -MOVING_SPEED;
+          this._moveForward();
         }else if(event.data.direction ==='DOWN')
         {
-          this._movingZ = MOVING_SPEED;
+          this._moveBackward();
         }else if(event.data.direction ==='LEFT')
         {
-          this._movingX = -MOVING_SPEED;
+          this._moveLeft();
         }else if(event.data.direction ==='RIGHT')
         {
-          this._movingX = MOVING_SPEED;
+          this._moveRight();
         }
       }
     }, false);
-
   }
 
-  _onKeyUp(e: KeyboardEvent) {
-    // this._enabled = false;
+  _moveForward = () => {
+    this._movingZ = -MOVING_SPEED;
   }
 
-  _onKeyDown(e: KeyboardEvent) {
-    // this._enabled = true;
+  _moveBackward = () => {
+    this._movingZ = MOVING_SPEED;
+  }
 
-    if (e.keyCode == '38') {
-        // up arrow
-        this._movingZ = -MOVING_SPEED;
-        // console.log('move forward')
+  _moveLeft = () => {
+    this._movingX = -MOVING_SPEED;
+  }
+
+  _moveRight = () => {
+    this._movingX = MOVING_SPEED;
+  }
+
+
+  onKeyDown = (event) => {
+    if (event.keyCode === 38) {
+      this._moveForward();
     }
-    else if (e.keyCode == '40') {
-        // down arrow
-        this._movingZ = MOVING_SPEED;
-        // console.log('move back')
+    else if (event.keyCode === 40) {
+      this._moveBackward();
     }
-    else if (e.keyCode == '37') {
-       // left arrow
-        // console.log('move left')
-        this._movingX = -MOVING_SPEED;
+    else if (event.keyCode === 37) {
+      this._moveLeft();
     }
-    else if (e.keyCode == '39') {
-       // right arrow
-        // console.log('move right')
-        this._movingX = MOVING_SPEED;
+    else if (event.keyCode === 39) {
+      this._moveRight();
     }
   }
 
-  fillCameraProperties(position: Vec3, rotation: Quaternion): boolean {
-
-
+  fillCameraProperties(positionArray, rotationArray) {
     if (this._movingZ === 0 && this._movingX === 0) {
       return false;
     }
 
 
-    const a = rotation[3];
-    const b = rotation[0];
-    const c = rotation[1];
-    const d = rotation[2];
+    const quaternion = new Quaternion(rotationArray[0], rotationArray[1], rotationArray[2], rotationArray[3]);
+    const position = new Vector3(positionArray[0], positionArray[1], positionArray[2]);
 
-    // const rotateYZ = Math.atan((2 * (a * b + c * d)) / (a * a - b * b - c * c + d * d));
-    const rotateZX = -Math.asin(2 * (b * d - a * c));
-    // const rotateXY = Math.atan((2 * (a * d + b * c)) / (a * a + b * b - c * c - d * d))
-    // console.log(rotateZX, rotateYZ, rotateXY);
-    
+    const cameraObjectNotation = new ObjectNotation(position, quaternion);
+
     if(this._movingZ !== 0)
     {
-
-      position[2] = position[2] + this._movingZ * Math.cos(rotateZX);
-      position[0] = position[0] + this._movingZ * Math.sin(rotateZX);
-
-    // console.log(rotateZX, position);
-
+      cameraObjectNotation.translateZ(this._movingZ);
     }
+
     if(this._movingX !== 0)
     {
-
-      position[2] = position[2] - this._movingX * Math.sin(rotateZX);
-      position[0] = position[0] + this._movingX * Math.cos(rotateZX);
-
-    // console.log(rotateZX, position);
-
+      cameraObjectNotation.translateX(this._movingX);
     }
 
+
+    positionArray[0] = cameraObjectNotation.position.x;
+    positionArray[1] = cameraObjectNotation.position.y;
+    positionArray[2] = cameraObjectNotation.position.z;
 
 
     this._movingZ = 0;
