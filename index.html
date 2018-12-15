@@ -9,10 +9,11 @@
     <div id="container"></div>
 
     <div id="controller" style="z-index: 999;position: absolute;bottom: 0px;right:0px;">
-      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'UP'});window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'LEFT'})">◄</button>
-      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'UP'})">▲</button>
-      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'DOWN'})">▼</button>
-      <button onClick="window.postMessage({ type: 'KEYBOARD_MESSAGE', direction: 'RIGHT'})">►</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_CAMERA_CONTROLLER_MESSAGE', direction: 'UP'})">◄</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_CAMERA_CONTROLLER_MESSAGE', direction: 'UP'})">▲</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_CAMERA_CONTROLLER_MESSAGE', direction: 'DOWN'})">▼</button>
+      <button onClick="window.postMessage({ type: 'KEYBOARD_CAMERA_CONTROLLER_MESSAGE', direction: 'RIGHT'})">►</button>
+      <button onClick="window.postMessage({ type: 'MOUSE_LOCK_CAMERA_CONTROLLER_MESSAGE', lock: true})">M</button>
     </div>
     <script src="./client.bundle.js"></script>
     <script>
